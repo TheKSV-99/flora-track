@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora Track | Smart Plant Intelligent System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E7D32; /* Forest Green */
+            --secondary: #81C784; /* Light Green */
+            --accent: #FF9800; /* Orange accent from device */
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --text: #333333;
+            --text-light: #666666;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #ffffff;
+        }
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #1B5E20;
+        }
+        /* Sections General */
+        section {
+            padding: 5rem 10%;
+        }
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+        /* Story / Problem & Solution */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .story-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .story-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        .story-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        /* Ecosystem */
+        .ecosystem {
+            background: var(--light);
+        }
+        .eco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .eco-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .eco-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .eco-card ul {
+            list-style: none;
+            text-align: left;
+            padding-left: 1rem;
+        }
+        .eco-card li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+        }
+        /* Design Process */
+        .process-img {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 10px;
+        }
+        /* Dashboard */
+        .dashboard {
+            background: var(--dark);
+            color: white;
+        }
+        .dashboard h2 {
+            color: white;
+        }
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .dash-grid img {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
+        .dash-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        .feature-list li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .feature-list li::before {
+            content: "✓";
+            color: var(--secondary);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        /* Roadmap */
+        .roadmap-img {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        /* Footer */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .story-grid, .dash-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            section { padding: 3rem 5%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">🌸 Flora Track 🌿</a>
+        <div class="nav-links">
+            <a href="#story">The Story</a>
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#design">Design</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#roadmap">Roadmap</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>So Crops Never Fail Silently</h1>
+            <p>Automatically photographs your plant, monitors its environment, and explains why it is thriving or struggling.</p>
+            <a href="#story" class="btn">Discover How It Works</a>
+        </div>
+    </section>
+    <section id="story">
+        <div class="story-grid">
+            <div class="story-text">
+                <h3>The Inspiration</h3>
+                <p>A group of agricultural students spent weeks cultivating chilli plants. During a holiday, the irrigation system failed. By the time anyone returned, the crop had dried beyond recovery. There was no visual record, no environmental history, and no way to determine when or why the failure occurred.</p>
+                <p>Plants decline silently. Existing affordable tools do not continuously observe both the plant and its environment. I developed Flora Track to ensure every stage of a plant's life—and every failure—is automatically documented, analyzed, and explained.</p>
+            </div>
+            <div class="story-img">
+                <img src="problem-solution.png" alt="The Problem vs The Solution">
+            </div>
+        </div>
+    </section>
+    <section id="ecosystem" class="ecosystem">
+        <h2>The Flora Track Ecosystem</h2>
+        <div class="eco-grid">
+            <div class="eco-card">
+                <h3>Hardware</h3>
+                <ul>
+                    <li>Prototype Enclosure</li>
+                    <li>Solar Powered Sensor Node</li>
+                    <li>ESP32-CAM & Environmental Sensors</li>
+                </ul>
+            </div>
+            <div class="eco-card">
+                <h3>AI Analytics</h3>
+                <ul>
+                    <li>Plant Intelligence</li>
+                    <li>Disease Detection</li>
+                    <li>Stress Prediction (VPD, GDD)</li>
+                </ul>
+            </div>
+            <div class="eco-card">
+                <h3>Software</h3>
+                <ul>
+                    <li>Local Web Dashboard</li>
+                    <li>Mobile App Interface</li>
+                    <li>Cloud Portal (Future)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="design">
+        <h2>From Sketch to Field-Ready</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto; color: var(--text-light);">
+            The device must work unattended for days. The enclosure was modeled in SolidWorks across ~12 printed components, focusing on rigidity, cable management, and airflow.
+        </p>
+        <img src="design-process.png" alt="Design Process" class="process-img">
+    </section>
+    <section id="dashboard" class="dashboard">
+        <h2>Smart, Local, and Offline</h2>
+        <div class="story-grid">
+            <div class="dash-text">
+                <p>All sensing and imaging run locally on ESP32 hardware with no cloud dependency. Access your plant's health via <code>floratrack.local</code> on any phone or laptop.</p>
+                <ul class="feature-list">
+                    <li>Live MJPEG Streaming & Time-Lapse</li>
+                    <li>Multi-Sensor Logging (Temp, Humidity, Soil, Light)</li>
+                    <li>Plain-language alerts (e.g., "Soil is Dry")</li>
+                    <li>Exportable CSV Data Logs</li>
+                </ul>
+            </div>
+            <div class="dash-grid">
+                <img src="dashboard-1.png" alt="Live Readings Dashboard">
+                <img src="dashboard-2.png" alt="Sensor Trends Dashboard">
+            </div>
+        </div>
+    </section>
+    <section id="roadmap">
+        <h2>V2 Roadmap: From Raw Data to Plant Intelligence</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">V1 shows raw numbers. V2 explains what they mean.</p>
+        <img src="roadmap.jpg" alt="V2 Roadmap" class="roadmap-img">
+    </section>
+    <footer id="contact">
+        <h3>Flora Track 🌸🌿</h3>
+        <p>Developed by K. Somanadha Vinayak</p>
+        <p>Questions, contributions, or support? Contact: <a href="mailto:somanadh9963@gmail.com">somanadh9963@gmail.com</a></p>
+        <br>
+        <p style="font-size: 0.8rem; color: #666;">&copy; 2023 Flora Track. Open Source Plant Monitoring.</p>
+    </footer>
+</body>
+</html>
